@@ -15,32 +15,39 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (menu-bar-mode 0)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(blink-cursor-mode -1)
+
+(when window-system
+  (progn
+    (setq-default left-margin-width 2 right-margin-width 2)
+    (set-window-buffer nil (current-buffer))
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
+    (blink-cursor-mode -1)))
+
 (server-start)
 ;(show-paren-mode 1)
 
-(setq-default left-margin-width 2 right-margin-width 2)
-(set-window-buffer nil (current-buffer))
 
 (load "~/.emacs.d/lisp/fira-code")
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 
 (use-package solarized-theme
+  :if window-system
   :ensure t
   :defer t
   :config
   (load-theme 'solarized-light t))
 
 (use-package github-theme
+  :if window-system
   :ensure t
   :defer nil
   :config
   (load-theme 'github t))
 
 (use-package eink-theme
+  :if window-system
   :ensure t
   :defer t
   :config
@@ -79,7 +86,8 @@
   :ensure t)
 
 (use-package git-commit
-  :ensure t)
+  :if window-system
+  :ensure nil)
 
 (use-package terraform-mode
   :ensure t)
