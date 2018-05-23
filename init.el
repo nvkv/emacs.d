@@ -20,13 +20,13 @@
   (progn
     (setq-default left-margin-width 2 right-margin-width 2)
     (set-window-buffer nil (current-buffer))
-    (tool-bar-mode -1)
+    (tool-bar-mode 0)
+    (menu-bar-mode 1)
     (scroll-bar-mode -1)
     (blink-cursor-mode -1)))
 
 (server-start)
 ;(show-paren-mode 1)
-
 
 (load "~/.emacs.d/lisp/fira-code")
 (load "~/.emacs.d/lisp/russian-nowinkeys")
@@ -68,13 +68,13 @@
     (use-package auto-complete-config)
     (ac-set-trigger-key "TAB")
     (ac-config-default)
-    (setq ac-delay 0.02)
+    (setq ac-delay 1)
     (setq ac-use-menu-map t)
     (setq ac-menu-height 50)
     (setq ac-use-quick-help nil) 
     (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
     (setq ac-ignore-case nil)
-    (setq ac-dwim  t)
+    (setq ac-dwim t)
     (setq ac-fuzzy-enable t)))
 
 (use-package projectile
