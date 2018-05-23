@@ -27,8 +27,14 @@
 
 (server-start)
 ;(show-paren-mode 1)
-
 (load "~/.emacs.d/lisp/fira-code")
+
+(if (fboundp 'mac-auto-operator-composition-mode)
+    (mac-auto-operator-composition-mode))
+
+(when (window-system)
+  (set-frame-font "Fira Code Retina-18"))
+
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 
