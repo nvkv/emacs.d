@@ -15,6 +15,8 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (menu-bar-mode 0)
+(setq-default tab-width 2)
+
 
 (when window-system
   (progn
@@ -101,6 +103,9 @@
 (use-package go-mode
   :ensure t)
 
+(use-package markdown-mode
+  :ensure t)
+
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
 	(height (face-attribute 'default :height)))
@@ -123,7 +128,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+    (markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
