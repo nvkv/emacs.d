@@ -17,6 +17,10 @@
 (menu-bar-mode 0)
 (setq-default tab-width 2)
 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 (when window-system
   (progn
@@ -106,6 +110,9 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package dockerfile-mode
+  :ensure t)
+
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
 	(height (face-attribute 'default :height)))
@@ -128,7 +135,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+    (dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
