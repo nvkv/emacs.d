@@ -16,30 +16,32 @@
 (set-default-coding-systems 'utf-8)
 (menu-bar-mode 0)
 (setq-default tab-width 2)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+(setq-default left-margin-width 2 right-margin-width 2)
+(set-window-buffer nil (current-buffer))
+
 (when window-system
   (progn
-    (setq-default left-margin-width 2 right-margin-width 2)
-    (set-window-buffer nil (current-buffer))
     (tool-bar-mode 0)
     (menu-bar-mode 1)
     (scroll-bar-mode -1)
     (blink-cursor-mode -1)))
 
 (server-start)
-;(show-paren-mode 1)
-(load "~/.emacs.d/lisp/fira-code")
 
 (if (fboundp 'mac-auto-operator-composition-mode)
     (mac-auto-operator-composition-mode))
 
 (when (window-system)
-  (set-frame-font "Fira Code Retina-18"))
+	(progn
+		(load "~/.emacs.d/lisp/fira-code")
+		(set-frame-font "Fira Code Retina-18")))
 
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
@@ -76,14 +78,14 @@
   (progn
     (auto-complete-mode t))
   :config
-  (progn 
+  (progn
     (use-package auto-complete-config)
     (ac-set-trigger-key "TAB")
     (ac-config-default)
     (setq ac-delay 1)
     (setq ac-use-menu-map t)
     (setq ac-menu-height 50)
-    (setq ac-use-quick-help nil) 
+    (setq ac-use-quick-help nil)
     (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
     (setq ac-ignore-case nil)
     (setq ac-dwim t)
