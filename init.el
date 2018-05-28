@@ -56,16 +56,15 @@
 (use-package github-theme
   :if window-system
   :ensure t
-  :defer nil
+  :defer t
   :config
   (load-theme 'github t))
 
-(use-package eink-theme
-  :if window-system
+(use-package github-modern-theme
   :ensure t
   :defer t
   :config
-  (load-theme 'eink t))
+  (load-theme 'github-modern t))
 
 (use-package editorconfig
   :ensure t
@@ -133,11 +132,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+	 (quote
+		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
-   (quote
-    (dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+	 (quote
+		(basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
