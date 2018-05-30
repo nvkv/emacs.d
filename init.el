@@ -46,17 +46,10 @@
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 
-(use-package soft-stone-theme
-  :if window-system
-  :ensure t
-  :defer nil
-  :config
-  (load-theme 'soft-stone t))
-
 (use-package solarized-theme
   :if window-system
   :ensure t
-  :defer t
+  :defer nil
   :config
   (load-theme 'solarized-light t))
 
