@@ -16,6 +16,8 @@
 (set-default-coding-systems 'utf-8)
 (menu-bar-mode 0)
 (setq-default tab-width 2)
+(setq indent-tabs-mode nil)
+(infer-indentation-style)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq backup-directory-alist
@@ -39,9 +41,9 @@
     (mac-auto-operator-composition-mode))
 
 (when (window-system)
-	(progn
-		(load "~/.emacs.d/lisp/fira-code")
-		(set-frame-font "Fira Code Retina-18")))
+  (progn
+    (load "~/.emacs.d/lisp/fira-code")
+    (set-frame-font "Fira Code Retina-18")))
 
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
@@ -110,11 +112,11 @@
 
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
-	(height (face-attribute 'default :height)))
+	      (height (face-attribute 'default :height)))
     (mapcar (lambda (face)
               (face-remap-add-relative
                face :family family :weight 'normal :height height))
-	    (face-list))))
+	          (face-list))))
 
 (when (display-graphic-p)
   (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
