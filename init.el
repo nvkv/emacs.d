@@ -23,7 +23,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default left-margin-width 2 right-margin-width 2)
+(setq-default left-margin-width 0 right-margin-width 0)
 (set-window-buffer nil (current-buffer))
 
 (when window-system
@@ -46,6 +46,13 @@
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 
+(use-package soft-stone-theme
+  :if window-system
+  :ensure t
+  :defer nil
+  :config
+  (load-theme 'soft-stone t))
+
 (use-package solarized-theme
   :if window-system
   :ensure t
@@ -53,14 +60,8 @@
   :config
   (load-theme 'solarized-light t))
 
-(use-package github-theme
-  :if window-system
-  :ensure t
-  :defer t
-  :config
-  (load-theme 'github t))
-
 (use-package github-modern-theme
+	:if window-system
   :ensure t
   :defer t
   :config
@@ -136,7 +137,7 @@
 		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
 	 (quote
-		(basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
