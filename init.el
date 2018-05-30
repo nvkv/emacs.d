@@ -23,7 +23,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default left-margin-width 0 right-margin-width 0)
+(setq-default left-margin-width 2 right-margin-width 1)
 (set-window-buffer nil (current-buffer))
 
 (when window-system
