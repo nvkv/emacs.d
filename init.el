@@ -17,7 +17,6 @@
 (menu-bar-mode 0)
 (setq-default tab-width 2)
 (setq indent-tabs-mode nil)
-(infer-indentation-style)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq backup-directory-alist
@@ -25,7 +24,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default left-margin-width 2 right-margin-width 1)
+(setq-default left-margin-width 0 right-margin-width 0)
 (set-window-buffer nil (current-buffer))
 
 (when window-system
@@ -47,13 +46,21 @@
 
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
+(load "~/.emacs.d/lisp/acme-theme.el")
 
-(use-package solarized-theme
-  :if window-system
-  :ensure t
-  :defer nil
-  :config
-  (load-theme 'solarized-light t))
+;; (use-package solarized-theme
+;;   :if window-system
+;;   :ensure t
+;;   :defer nil
+;;   :config
+;;   (load-theme 'solarized-light t))
+
+;; (use-package plan9-theme
+;;   :if window-system
+;;   :ensure t
+;;   :defer nil
+;;   :config
+;;   (load-theme 'plan9 t))
 
 (use-package github-modern-theme
 	:if window-system
@@ -128,11 +135,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 (quote
-		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
-	 (quote
-		(soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+   (quote
+    (plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
