@@ -48,27 +48,6 @@
 (setq default-input-method "russian-no-windows")
 (load "~/.emacs.d/lisp/acme-theme.el")
 
-;; (use-package solarized-theme
-;;   :if window-system
-;;   :ensure t
-;;   :defer nil
-;;   :config
-;;   (load-theme 'solarized-light t))
-
-;; (use-package plan9-theme
-;;   :if window-system
-;;   :ensure t
-;;   :defer nil
-;;   :config
-;;   (load-theme 'plan9 t))
-
-(use-package github-modern-theme
-	:if window-system
-  :ensure t
-  :defer t
-  :config
-  (load-theme 'github-modern t))
-
 (use-package editorconfig
   :ensure t
   :config
