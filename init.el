@@ -3,6 +3,7 @@
 (setq package-archives
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
 
 (setq package-enable-at-startup nil)
@@ -96,6 +97,9 @@
 (use-package dockerfile-mode
   :ensure t)
 
+(use-package groovy-mode
+	:ensure t)
+
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
 	      (height (face-attribute 'default :height)))
@@ -114,11 +118,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+	 (quote
+		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
-   (quote
-    (plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+	 (quote
+		(groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
