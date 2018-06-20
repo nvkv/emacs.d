@@ -25,6 +25,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+(setq create-lockfiles nil)
+
 (setq-default left-margin-width 0 right-margin-width 0)
 (set-window-buffer nil (current-buffer))
 
@@ -48,7 +50,6 @@
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 (load "~/.emacs.d/lisp/acme-theme.el")
-
 (use-package editorconfig
   :ensure t
   :config
@@ -100,6 +101,9 @@
 (use-package groovy-mode
 	:ensure t)
 
+(use-package cider
+	:ensure t)
+
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
 	      (height (face-attribute 'default :height)))
@@ -122,7 +126,7 @@
 		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
 	 (quote
-		(groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(cider groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
