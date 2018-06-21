@@ -67,6 +67,7 @@
     (ac-config-default)
     (setq ac-delay 1)
     (setq ac-use-menu-map t)
+
     (setq ac-menu-height 50)
     (setq ac-use-quick-help nil)
     (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
@@ -112,9 +113,8 @@
                face :family family :weight 'normal :height height))
 	          (face-list))))
 
-(when (display-graphic-p)
-  (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
-  (add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes))
+(add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
+(add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
