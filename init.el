@@ -67,13 +67,13 @@
     (ac-config-default)
     (setq ac-delay 1)
     (setq ac-use-menu-map t)
-
     (setq ac-menu-height 50)
     (setq ac-use-quick-help nil)
     (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
     (setq ac-ignore-case nil)
     (setq ac-dwim t)
-    (setq ac-fuzzy-enable t)))
+    (setq ac-fuzzy-enable t)
+		(add-to-list 'ac-modes 'terraform-mode))
 
 (use-package projectile
   :ensure t
@@ -88,7 +88,8 @@
   :ensure nil)
 
 (use-package terraform-mode
-  :ensure t)
+  :ensure t
+	:hook (terraform-mode . terraform-format-on-save-mode))
 
 (use-package go-mode
   :ensure t)
@@ -101,6 +102,12 @@
 
 (use-package groovy-mode
 	:ensure t)
+
+(use-package kotlin-mode
+	:ensure t
+  :config
+	(progn
+		(setq kotlin-tab-width 4)))
 
 (use-package cider
 	:ensure t)
