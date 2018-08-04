@@ -52,6 +52,7 @@
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 (load "~/.emacs.d/lisp/acme-theme.el")
+
 (use-package editorconfig
   :ensure t
   :config
@@ -73,7 +74,7 @@
     (setq ac-ignore-case nil)
     (setq ac-dwim t)
     (setq ac-fuzzy-enable t)
-		(add-to-list 'ac-modes 'terraform-mode))
+		(add-to-list 'ac-modes 'terraform-mode)))
 
 (use-package projectile
   :ensure t
