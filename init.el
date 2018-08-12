@@ -108,6 +108,7 @@
 	:ensure t
   :config
 	(progn
+		(setq kotlin-command "/usr/local/bin/kotlinc")
 		(setq kotlin-tab-width 4)))
 
 (use-package cider
@@ -140,7 +141,7 @@
 		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
 	 (quote
-		(ob-clojurescript which-key cider groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(json-mode gradle-mode ob-clojurescript which-key cider groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

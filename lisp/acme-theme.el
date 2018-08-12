@@ -75,7 +75,7 @@
 
    ;;'(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
    ;;'(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
-   ;;'(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))
+   ;;'(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))]
 
    `(show-paren-match ((t (:weight bold :background ,purple))))
    `(show-paren-mismatch ((t (:background ,red))))
@@ -174,6 +174,8 @@
    `(gnus-group-mail-5-empty ((t (:foreground "black" :background ,bg))))
    `(gnus-group-mail-6-empty ((t (:foreground "black" :background ,bg))))
    `(gnus-group-mail-low-empty ((t (:foreground "black" :background ,bg))))
+
+	 '(clojure-keyword-face ((t (:foreground "grey29"))))
 
    '(font-latex-bold-face ((t (:weight bold))))
    '(font-latex-italic-face ((t (:slant italic))))
