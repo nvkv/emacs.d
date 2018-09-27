@@ -32,6 +32,8 @@
 (setq-default left-margin-width 0 right-margin-width 0)
 (set-window-buffer nil (current-buffer))
 
+(setq show-paren-mode t)
+
 (when window-system
   (progn
     (tool-bar-mode 0)
@@ -52,6 +54,8 @@
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
 (load "~/.emacs.d/lisp/acme-theme.el")
+
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (use-package editorconfig
   :ensure t
@@ -79,7 +83,9 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-mode))
+  (projectile-mode +1)
+	(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+	(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package yaml-mode
   :ensure t)
@@ -100,16 +106,6 @@
 
 (use-package dockerfile-mode
   :ensure t)
-
-(use-package groovy-mode
-	:ensure t)
-
-(use-package kotlin-mode
-	:ensure t
-  :config
-	(progn
-		(setq kotlin-command "/usr/local/bin/kotlinc")
-		(setq kotlin-tab-width 4)))
 
 (use-package cider
 	:ensure t)
@@ -141,7 +137,7 @@
 		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
 	 (quote
-		(json-mode gradle-mode ob-clojurescript which-key cider groovy-mode plan9-theme soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
