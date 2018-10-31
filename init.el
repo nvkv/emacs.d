@@ -1,6 +1,7 @@
 (require 'package)
 
 (add-to-list 'exec-path "/usr/local/bin")
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
 (setq package-archives
       `(,@package-archives
@@ -62,6 +63,9 @@
   :config
   (editorconfig-mode 1))
 
+(use-package ag
+  :ensure t)
+
 (use-package auto-complete
   :ensure t
   :init (auto-complete-mode t)
@@ -93,6 +97,11 @@
 (use-package git-commit
   :if window-system
   :ensure nil)
+
+(use-package magit
+  :ensure t
+	:config
+	(global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package terraform-mode
   :ensure t
@@ -137,7 +146,7 @@
 		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
 	 (quote
-		(zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
