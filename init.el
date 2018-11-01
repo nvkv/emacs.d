@@ -14,27 +14,27 @@
 (setq org-agenda-files (file-expand-wildcards (concat org-directory "*.org")))
 (setq org-default-notes-file (concat org-directory "inbox.org"))
 (setq org-refile-targets '((nil :maxlevel . 9)
-                                (org-agenda-files :maxlevel . 9)))
+                           (org-agenda-files :maxlevel . 9)))
 
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline org-default-notes-file "Inbox")
-        "* TODO %?\n  %U")
-   ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
-    "* %?\nEntered on %U\n  %i\n  %a")))
+      '(("t" "Todo" entry (file+headline org-default-notes-file "Inbox")
+         "* TODO %?\n  %U")
+        ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
 
 (define-key global-map "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-ci" '(lambda ()
-													 (interactive)
-													 (find-file org-default-notes-file)))
+                           (interactive)
+                           (find-file org-default-notes-file)))
 
 (global-set-key "\C-ct" '(lambda ()
-													 (interactive)
-													 (find-file org-todo-file)))
+                           (interactive)
+                           (find-file org-todo-file)))
 
 (global-set-key "\C-cn" '(lambda ()
-													 (interactive)
-													 (find-file org-notes-file)))
+                           (interactive)
+                           (find-file org-notes-file)))
 
 
 (package-initialize)
@@ -117,14 +117,14 @@
     (setq ac-ignore-case nil)
     (setq ac-dwim t)
     (setq ac-fuzzy-enable t)
-		(add-to-list 'ac-modes 'terraform-mode)))
+    (add-to-list 'ac-modes 'terraform-mode)))
 
 (use-package projectile
   :ensure t
   :config
   (projectile-mode +1)
-	(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-	(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package yaml-mode
   :ensure t)
@@ -135,12 +135,12 @@
 
 (use-package magit
   :ensure t
-	:config
-	(global-set-key (kbd "C-x g") 'magit-status))
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package terraform-mode
   :ensure t
-	:hook (terraform-mode . terraform-format-on-save-mode))
+  :hook (terraform-mode . terraform-format-on-save-mode))
 
 (use-package go-mode
   :ensure t)
@@ -152,21 +152,21 @@
   :ensure t)
 
 (use-package cider
-	:ensure t)
+  :ensure t)
 
 (use-package which-key
-	:ensure t
+  :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode))
 
 (defun remap-faces-default-attributes ()
   (let ((family (face-attribute 'default :family))
-	      (height (face-attribute 'default :height)))
+        (height (face-attribute 'default :height)))
     (mapcar (lambda (face)
               (face-remap-add-relative
                face :family family :weight 'normal :height height))
-	          (face-list))))
+            (face-list))))
 
 (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
 (add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
@@ -177,14 +177,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 (quote
-		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(org-agenda-files
-	 (quote
-		("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
+   (quote
+    ("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
  '(package-selected-packages
-	 (quote
-		(magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+   (quote
+    (magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
