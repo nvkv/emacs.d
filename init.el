@@ -150,10 +150,27 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package web-mode
+	:ensure t)
+
+(use-package tide
+  :ensure t
+	:config
+	(require 'web-mode)
+	(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+	(add-hook 'web-mode-hook
+						(lambda ()
+							(when (string-equal "tsx" (file-name-extension buffer-file-name))
+								(setup-tide-mode)))))
+
+
 (use-package dockerfile-mode
   :ensure t)
 
 (use-package cider
+  :ensure t)
+
+(use-package swift-mode
   :ensure t)
 
 (use-package which-key
@@ -186,7 +203,7 @@
 		("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
  '(package-selected-packages
 	 (quote
-		(forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
