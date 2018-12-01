@@ -95,7 +95,7 @@
    `(helm-buffer-process ((t (:foreground "black" :background ,blue))))
    `(helm-buffer-saved-out ((t (:foreground "black" :background ,purple))))
    `(helm-buffer-size ((t (:foreground "grey40" :background ,bg))))
-   `(helm-ff-dotted-directory ((t (:foreground "black" :background ,bg :slant italic))))
+   `(helm-ff-dotted-directory ((t (:foreground "black" :background ,bg :weight bold))))
    `(helm-ff-directory ((t (:foreground "black" :background ,bg :weight bold))))
    `(helm-ff-file ((t (:foreground "black" :background ,bg))))
    `(helm-ff-executable ((t (:foreground ,green :background ,bg))))

@@ -16,8 +16,6 @@
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9)))
 
-(add-hook 'auto-save-hook 'org-save-all-org-buffers)
-
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline org-default-notes-file "Inbox")
          "* TODO %?\n  %U")
@@ -148,7 +146,12 @@
   :ensure t)
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 (use-package web-mode
 	:ensure t)
@@ -173,22 +176,25 @@
 (use-package swift-mode
   :ensure t)
 
+(use-package groovy-mode
+  :ensure t)
+
 (use-package which-key
   :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode))
 
-(defun remap-faces-default-attributes ()
-  (let ((family (face-attribute 'default :family))
-        (height (face-attribute 'default :height)))
-    (mapcar (lambda (face)
-              (face-remap-add-relative
-               face :family family :weight 'normal :height height))
-            (face-list))))
+;; (defun remap-faces-default-attributes ()
+;;   (let ((family (face-attribute 'default :family))
+;;         (height (face-attribute 'default :height)))
+;;     (mapcar (lambda (face)
+;;               (face-remap-add-relative
+;;                face :family family :weight 'normal :height height))
+;;             (face-list))))
 
-(add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
-(add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
+;; (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
+;; (add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -203,7 +209,7 @@
 		("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
  '(package-selected-packages
 	 (quote
-		(tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(groovy-mode markdown-mode+ web-mode tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
