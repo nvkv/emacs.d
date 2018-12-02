@@ -216,3 +216,37 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;; Do not kill, delete
+
+(defun please-delete-word (arg)
+  (interactive "p")
+  (delete-region
+   (point)
+   (progn
+     (forward-word arg)
+     (point))))
+
+(defun please-backward-delete-word (arg)
+  (interactive "p")
+  (please-delete-word (- arg)))
+
+(defun please-delete-line ()
+  (interactive)
+  (delete-region
+   (point)
+   (progn (end-of-line 1) (point))))
+
+(defun please-delete-line-backward ()
+  (interactive)
+  (let (p1 p2)
+    (setq p1 (point))
+    (beginning-of-line 1)
+    (setq p2 (point))
+    (delete-region p1 p2)))
+
+(global-set-key (kbd "C-S-k") 'please-delete-line-backward)
+(global-set-key (kbd "C-k") 'please-delete-line)
+(global-set-key (kbd "M-d") 'please-delete-word)
+(global-set-key (kbd "<M-backspace>") 'please-backward-delete-word)
