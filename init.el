@@ -68,7 +68,7 @@
 (setq-default left-margin-width 0 right-margin-width 0)
 (set-window-buffer nil (current-buffer))
 
-(setq show-paren-mode t)
+(show-paren-mode 1)
 
 (when window-system
   (progn
@@ -143,7 +143,10 @@
   :hook (terraform-mode . terraform-format-on-save-mode))
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+	:init
+	(add-hook 'before-save-hook 'gofmt-before-save)
+	(setq-default gofmt-command "~/go/bin/goimports"))
 
 (use-package markdown-mode
   :ensure t
