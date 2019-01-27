@@ -1,6 +1,7 @@
 (require 'package)
 
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "~/go/bin/")
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
 (setq package-archives
