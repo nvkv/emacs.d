@@ -22,7 +22,8 @@
 (deftheme acme
   "A theme inspired by the classic colours of the ACME editor.")
 
-(let ((bg "#FFFFEA")
+(let (;(bg "#FFFFEA")
+			(bg "#F7F7F7")
       (lazy "#D1D1C0")
       (fg "black")
       (yellow "#EAEA9E")
