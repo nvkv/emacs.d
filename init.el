@@ -170,7 +170,6 @@
 							(when (string-equal "tsx" (file-name-extension buffer-file-name))
 								(setup-tide-mode)))))
 
-
 (use-package dockerfile-mode
   :ensure t)
 
@@ -188,6 +187,10 @@
   :diminish which-key-mode
   :config
   (which-key-mode))
+
+(use-package rainbow-delimiters
+	:ensure t
+	:hook (prog-mode . rainbow-delimiters-mode))
 
 ;; (defun remap-faces-default-attributes ()
 ;;   (let ((family (face-attribute 'default :family))
@@ -213,7 +216,7 @@
 		("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
  '(package-selected-packages
 	 (quote
-		(groovy-mode markdown-mode+ web-mode tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+		(rainbow-delimeters groovy-mode markdown-mode+ web-mode tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -309,3 +312,8 @@
 (global-set-key (kbd "C-k") 'del/delete-line)
 (global-set-key (kbd "M-d") 'please-delete-word)
 (global-set-key (kbd "<M-backspace>") 'please-backward-delete-word)
+
+
+;; specify font for all unicode characters
+(when (member "Symbola" (font-family-list))
+  (set-fontset-font t 'unicode "Symbola" nil 'prepend))
