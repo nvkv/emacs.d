@@ -54,6 +54,7 @@
    '(font-lock-type-face ((t (:foreground "black"))))
    '(font-lock-variable-name-face ((t (:foreground "black"))))
    `(sh-quoted-exec ((t (:foreground "black"))))
+	 `(sh-heredoc ((t (:foreground "dark green"))))
    '(font-lock-warning-face ((t (:foreground "black"))))
    '(button ((t (:inherit (link)))))
    '(link ((t (:underline (:color foreground-color :style line) :foreground "black"))))
@@ -187,6 +188,6 @@
    '(font-latex-verbatim-face ((t (:foreground "black"))))
    '(font-latex-sedate-face ((t (:foreground "black"))))
    '(font-latex-warning-face ((t (:foreground "black"))))
-   '(font-latex-sectioning-5-face ((t (:foreground "black" :weight normal)))) ))
+   '(font-latex-sectioning-5-face ((t (:foreground "black" :weight normal))))))
 
 (provide-theme 'the-color-theme)
