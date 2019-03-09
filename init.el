@@ -86,11 +86,15 @@
 (when (window-system)
   (progn
     (load "~/.emacs.d/lisp/fira-code")
-    (set-frame-font "Fira Code Retina-18")))
+    (set-frame-font "Fira Code Retina-18")
+		;; specify font for all unicode characters
+		(when (member "Symbola" (font-family-list))
+			(set-fontset-font t 'unicode "Symbola" nil 'prepend))))
+
 
 (load "~/.emacs.d/lisp/russian-nowinkeys")
 (setq default-input-method "russian-no-windows")
-(load "~/.emacs.d/lisp/acme-theme.el")
+(load "~/.emacs.d/lisp/the-color-theme.el")
 
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
@@ -192,17 +196,6 @@
 	:ensure t
 	:hook (prog-mode . rainbow-delimiters-mode))
 
-;; (defun remap-faces-default-attributes ()
-;;   (let ((family (face-attribute 'default :family))
-;;         (height (face-attribute 'default :height)))
-;;     (mapcar (lambda (face)
-;;               (face-remap-add-relative
-;;                face :family family :weight 'normal :height height))
-;;             (face-list))))
-
-;; (add-hook 'minibuffer-setup-hook 'remap-faces-default-attributes)
-;; (add-hook 'change-major-mode-after-body-hook 'remap-faces-default-attributes)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -226,7 +219,6 @@
 
 
 ;; Do not kill, delete
-
 (defun please-delete-word (arg)
   (interactive "p")
   (delete-region
@@ -312,8 +304,3 @@
 (global-set-key (kbd "C-k") 'del/delete-line)
 (global-set-key (kbd "M-d") 'please-delete-word)
 (global-set-key (kbd "<M-backspace>") 'please-backward-delete-word)
-
-
-;; specify font for all unicode characters
-(when (member "Symbola" (font-family-list))
-  (set-fontset-font t 'unicode "Symbola" nil 'prepend))

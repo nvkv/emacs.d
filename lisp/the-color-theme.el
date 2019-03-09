@@ -19,21 +19,20 @@
 
 ;; This file is not part of Emacs.
 
-(deftheme acme
-  "A theme inspired by the classic colours of the ACME editor.")
+(deftheme the-color-theme
+  "A theme inspired by the classic colours of the ACME editor but significantly diverged since")
 
-(let (;(bg "#FFFFEA")
-			(bg "#F7F7F7")
+(let ((bg "#F7F7F7")
       (lazy "#D1D1C0")
       (fg "black")
       (yellow "#EAEA9E")
       (red "#AA0000")
       (blue "#EAFFFF")
-      (purple "#8888CC")
+      (purple "#fee9e9")
       (green "#508050")
       (mud "#99994C"))
   (custom-theme-set-faces
-   'acme
+   'the-color-theme
    `(default ((t (:background ,bg :foreground ,fg ))))
    '(cursor ((t (:background "black"))))
    '(escape-glyph ((t (:foreground "black"))))
@@ -190,4 +189,4 @@
    '(font-latex-warning-face ((t (:foreground "black"))))
    '(font-latex-sectioning-5-face ((t (:foreground "black" :weight normal)))) ))
 
-(provide-theme 'acme)
+(provide-theme 'the-color-theme)
