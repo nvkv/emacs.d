@@ -22,7 +22,7 @@
 (deftheme the-color-theme
   "A theme inspired by the classic colours of the ACME editor but significantly diverged since")
 
-(let ((bg "#F7F7F7")
+(let ((bg (if (window-system) "#F7F7F7" "clear"))
       (lazy "#D1D1C0")
       (fg "black")
       (yellow "#EAEA9E")
@@ -74,10 +74,6 @@
    '(next-error ((t (:inherit (region)))))
    '(query-replace ((t (:inherit (isearch)))))
 
-   ;;'(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
-   ;;'(font-lock-regexp-grouping-backslash ((t (:inherit (bold)))))
-   ;;'(font-lock-regexp-grouping-construct ((t (:inherit (bold)))))]
-
    `(show-paren-match ((t (:weight bold :background ,purple))))
    `(show-paren-mismatch ((t (:background ,red))))
    `(sp-show-pair-match-face ((t (:weight bold :background ,purple))))
@@ -89,9 +85,6 @@
    `(helm-visible-mark ((t (:foreground ,fg :background ,green :weight bold))))
    `(helm-match ((t (:foreground "black" :background ,bg :weight bold))))
    `(helm-M-x-key ((t (:foreground "black" :background ,purple))))
-   ;; '(helm-separator ((t (:foreground "black" :background ,bg))))
-   ;; '(helm-time-zone-current ((t (:foreground "black" :background ,bg))))
-   ;; '(helm-time-zone-home ((t (:foreground "black" :background ,bg))))
    `(helm-buffer-not-saved ((t (:foreground "black" :background ,red))))
    `(helm-buffer-process ((t (:foreground "black" :background ,blue))))
    `(helm-buffer-saved-out ((t (:foreground "black" :background ,purple))))
@@ -103,15 +96,7 @@
    `(helm-ff-invalid-symlink ((t (:foreground ,red :background ,bg))))
    `(helm-ff-symlink ((t (:foreground ,yellow :background ,bg :weight bold))))
    `(helm-ff-prefix ((t (:foreground "black" :background ,purple))))
-   ;; '(helm-grep-cmd-line ((t (:foreground ,fg :background ,bg))))
-   ;; '(helm-grep-file ((t (:foreground ,fg :background ,bg))))
    `(helm-grep-finish ((t (:foreground "black" :background ,bg))))
-   ;; '(helm-grep-lineno ((t (:foreground ,fg :background ,bg))))
-   ;; '(helm-grep-match ((t (:foreground nil :background nil :inherit helm-match))))
-   ;; '(helm-grep-running ((t (:foreground "black" :background ,bg))))
-   ;; '(helm-moccur-buffer ((t (:foreground "black" :background ,bg))))
-   ;; '(helm-source-go-package-godoc-description ((t (:foreground "black"))))
-   ;; '(helm-bookmark-w3m ((t (:foreground "black"))))
    `(helm-locate-finish ((t (:foreground "black" :background ,yellow))))
    `(helm-swoop-target-line-block-face ((t (:foreground "black" :background ,yellow))))
    `(helm-swoop-target-line-face ((t (:foreground "black" :background ,yellow))))
@@ -128,9 +113,7 @@
    `(company-tooltip-annotation ((t (:foreground "black" :background "grey" :slant italic))))
    `(company-tooltip-common ((t (:foreground "black" :background "grey" :weight bold))))
    `(company-tooltip-common-selection ((t (:foreground "black" :background ,blue :weight bold))))
-   ;;`(company-tooltip-mouse ((t (:inherit highlight))))
    `(company-tooltip-selection ((t (:background ,blue :foreground "black"))))
-   ;;`(company-template-field ((t (:inherit region))))
 
    '(gnus-header-content ((t (:foreground "black"))))
    '(gnus-header-from ((t (:foreground "black"))))
