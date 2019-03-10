@@ -8,36 +8,6 @@
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
 
-;; Org settings
-(setq org-directory "~/Dropbox/org/")
-(setq org-notes-file (concat org-directory "notes.org"))
-(setq org-todo-file (concat org-directory "todo.org"))
-(setq org-agenda-files (file-expand-wildcards (concat org-directory "*.org")))
-(setq org-default-notes-file (concat org-directory "inbox.org"))
-(setq org-refile-targets '((nil :maxlevel . 9)
-                           (org-agenda-files :maxlevel . 9)))
-
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline org-default-notes-file "Inbox")
-         "* TODO %?\n  %U")
-        ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
-         "* %?\nEntered on %U\n  %i")))
-
-(define-key global-map "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-ci" '(lambda ()
-                           (interactive)
-                           (find-file org-default-notes-file)))
-
-(global-set-key "\C-ct" '(lambda ()
-                           (interactive)
-                           (find-file org-todo-file)))
-
-(global-set-key "\C-cn" '(lambda ()
-                           (interactive)
-                           (find-file org-notes-file)))
-
-
 (package-initialize)
 
 (setq package-enable-at-startup nil)
@@ -216,7 +186,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 ;; Do not kill, delete
 (defun please-delete-word (arg)
