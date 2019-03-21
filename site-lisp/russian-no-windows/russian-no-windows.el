@@ -105,10 +105,4 @@
  (">" ?Ю)
  ("?" ??))
 
-
-;; Local Variables:
-;; coding: utf-8
-;; End:
-
-;;; russian-nowinkeys.el ends here
 (provide 'russian-no-windows)

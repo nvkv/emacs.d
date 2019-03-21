@@ -1,72 +1,88 @@
 (require 'package)
 
+;; Set PATH
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "~/go/bin/")
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
+;; Package bootstrap
 (setq package-archives
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
-
 (setq package-enable-at-startup nil)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq ring-bell-function 'ignore)
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-(menu-bar-mode 0)
-(setq-default tab-width 2)
-(setq indent-tabs-mode nil)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Some random stuff that have to be moved out somewhere
 
+(server-start)
+
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-c r") (lambda ()
                                 (interactive)
                                 (revert-buffer t t t)
                                 (message "buffer is reverted")))
 
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(use-package emacs
+  :ensure nil
+  :init
+  (put 'narrow-to-region 'disabled nil)
+  (put 'downcase-region 'disabled nil)
+  (scroll-bar-mode 0)
+  (blink-cursor-mode 0)
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+  (setq-default tab-width 2)
+  (set-window-buffer nil (current-buffer))
+  (setq ring-bell-function 'ignore)
+  (setq-default left-margin-width 0 right-margin-width 0)
 
-(setq create-lockfiles nil)
+  :custom
+  (inhibit-startup-screen t "Don't show splash screen")
+  (use-dialog-box nil "Disable dialog boxes")
+  (enable-recursive-minibuffers t "Allow minibuffer commands in the minibuffer")
+  (indent-tabs-mode nil "Spaces!")
+  (create-lockfiles nil)
+  (show-paren-mode 1)
+	(debug-on-quit nil))
 
-(setq-default left-margin-width 0 right-margin-width 0)
-(set-window-buffer nil (current-buffer))
+(use-package files
+  :ensure nil
+  :hook
+  (before-save . delete-trailing-whitespace)
+  :custom
+  (require-final-newline t)
+  ;; backup settings
+  (backup-by-copying t)
+  (backup-directory-alist
+   `((".*" . ,(expand-file-name
+               (concat user-emacs-directory "backups")))))
+  (delete-old-versions t)
+  (kept-new-versions 6)
+  (kept-old-versions 2)
+	(version-control t))
 
-(show-paren-mode 1)
+(use-package faces
+  :ensure nil
+  :if window-system
+  :init
+  (set-frame-font "Fira Code Retina-18"))
 
-(when window-system
-  (progn
-    (tool-bar-mode 0)
-    (menu-bar-mode 1)
-    (scroll-bar-mode -1)
-    (blink-cursor-mode -1)))
+(use-package mule
+  :ensure nil
+  :config
+  (prefer-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-language-environment "UTF-8")
+  (load "~/.emacs.d/site-lisp/russian-no-windows/russian-no-windows.el")
+  (setq default-input-method "russian-no-windows"))
 
-(server-start)
-
-(if (fboundp 'mac-auto-operator-composition-mode)
-    (mac-auto-operator-composition-mode))
-
-(when (window-system)
-  (progn
-    (load "~/.emacs.d/lisp/fira-code")
-    (set-frame-font "Fira Code Retina-18")
-		;; specify font for all unicode characters
-		(when (member "Symbola" (font-family-list))
-			(set-fontset-font t 'unicode "Symbola" nil 'prepend))))
-
-
-(load "~/.emacs.d/lisp/russian-nowinkeys")
-(setq default-input-method "russian-no-windows")
-(load "~/.emacs.d/lisp/the-color-theme.el")
-
-(global-set-key (kbd "M-z") 'zap-up-to-char)
+(use-package the-colour-theme
+	:load-path "site-lisp/the-colour-theme/")
 
 (use-package editorconfig
   :ensure t
@@ -166,20 +182,26 @@
 	:ensure t
 	:hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package magit-popup
+  :ensure t)
+
+(use-package kubernetes
+  :ensure t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 (quote
-		("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(org-agenda-files
-	 (quote
-		("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
+   (quote
+    ("~/Dropbox/org/inbox.org" "~/Dropbox/org/maybe.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/todo.org")))
  '(package-selected-packages
-	 (quote
-		(rainbow-delimeters groovy-mode markdown-mode+ web-mode tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
+   (quote
+    (magit-popup kubernetes russian-no-windows rainbow-delimeters groovy-mode markdown-mode+ web-mode tide swift-mode forth-mode magit ag zzz-to-char zap-to-char zop-to-char json-mode gradle-mode ob-clojurescript which-key cider soft-stone-theme stekene minimal-theme monochrome monochrome-theme farmhouse-theme basic-theme eziam-common eziam-theme github-modern-theme dockerfile-mode markdown-mode go-mode eink-theme github-theme yaml-mode use-package terraform-mode solarized-theme projectile git-commit editorconfig auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

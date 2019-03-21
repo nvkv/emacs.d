@@ -19,7 +19,7 @@
 
 ;; This file is not part of Emacs.
 
-(deftheme the-color-theme
+(deftheme the-colour-theme
   "A theme inspired by the classic colours of the ACME editor but significantly diverged since")
 
 (let ((bg (if (window-system) "#F7F7F7" "clear"))
@@ -32,7 +32,7 @@
       (green "#508050")
       (mud "#99994C"))
   (custom-theme-set-faces
-   'the-color-theme
+   'the-colour-theme
    `(default ((t (:background ,bg :foreground ,fg ))))
    '(cursor ((t (:background "black"))))
    '(escape-glyph ((t (:foreground "black"))))
@@ -173,4 +173,5 @@
    '(font-latex-warning-face ((t (:foreground "black"))))
    '(font-latex-sectioning-5-face ((t (:foreground "black" :weight normal))))))
 
-(provide-theme 'the-color-theme)
+(provide-theme 'the-colour-theme)
+(provide 'the-colour-theme)
