@@ -82,6 +82,13 @@
   :ensure nil
   :diminish auto-revert-mode)
 
+(use-package ido
+  :ensure nil
+  :config
+  (ido-mode 1)
+  (setq ido-everywhere t)
+  (setq ido-enable-flex-matching t))
+
 (use-package the-colour-theme
 	:load-path "site-lisp/the-colour-theme/")
 
@@ -167,9 +174,6 @@
 (use-package cider
   :ensure t)
 
-(use-package swift-mode
-  :ensure t)
-
 (use-package groovy-mode
   :ensure t)
 
@@ -182,9 +186,3 @@
 (use-package rainbow-delimiters
 	:ensure t
 	:hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package magit-popup
-  :ensure t)
-
-(use-package kubernetes
-  :ensure t)
