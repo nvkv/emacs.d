@@ -32,6 +32,7 @@
   (set-window-buffer nil (current-buffer))
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
+  (global-set-key (kbd "M-i") 'imenu)
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
