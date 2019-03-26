@@ -40,7 +40,7 @@
   (indent-tabs-mode nil "Spaces!")
   (create-lockfiles nil)
   (show-paren-mode 1)
-	(debug-on-quit nil)
+  (debug-on-quit nil)
 
   :bind
   ("M-i" . imenu)
@@ -63,7 +63,7 @@
   (delete-old-versions t)
   (kept-new-versions 6)
   (kept-old-versions 2)
-	(version-control t))
+  (version-control t))
 
 (use-package faces
   :ensure nil
@@ -97,7 +97,7 @@
   (setq ido-enable-flex-matching t))
 
 (use-package the-colour-theme
-	:load-path "site-lisp/the-colour-theme/")
+  :load-path "site-lisp/the-colour-theme/")
 
 
 (use-package multi-term
@@ -162,9 +162,9 @@
 
 (use-package go-mode
   :ensure t
-	:init
-	(add-hook 'before-save-hook 'gofmt-before-save)
-	(setq-default gofmt-command "~/go/bin/goimports"))
+  :init
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq-default gofmt-command "~/go/bin/goimports"))
 
 (use-package markdown-mode
   :ensure t
@@ -175,17 +175,17 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package web-mode
-	:ensure t)
+  :ensure t)
 
 (use-package tide
   :ensure t
-	:config
-	(require 'web-mode)
-	(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-	(add-hook 'web-mode-hook
-						(lambda ()
-							(when (string-equal "tsx" (file-name-extension buffer-file-name))
-								(setup-tide-mode)))))
+  :config
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode)))))
 
 (use-package dockerfile-mode
   :ensure t)
@@ -203,5 +203,5 @@
   (which-key-mode))
 
 (use-package rainbow-delimiters
-	:ensure t
-	:hook (prog-mode . rainbow-delimiters-mode))
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
