@@ -104,6 +104,7 @@
   :ensure t
 
   :config
+  (require 'cl)
   (setq multi-term-program "/usr/local/bin/bash")
   (setq multi-term-buffer-name "t")
 
