@@ -32,7 +32,6 @@
   (set-window-buffer nil (current-buffer))
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
-  (global-set-key (kbd "M-i") 'imenu)
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
@@ -41,7 +40,14 @@
   (indent-tabs-mode nil "Spaces!")
   (create-lockfiles nil)
   (show-paren-mode 1)
-	(debug-on-quit nil))
+	(debug-on-quit nil)
+
+  :bind
+  ("M-i" . imenu)
+  ("C-S-<down>" . enlarge-window)
+  ("C-S-<up>" . shrink-window)
+  ("C-S-<left>" . shrink-window-horizontally)
+  ("C-S-<right>" . enlarge-window-horizontally))
 
 (use-package files
   :ensure nil
@@ -92,6 +98,18 @@
 
 (use-package the-colour-theme
 	:load-path "site-lisp/the-colour-theme/")
+
+
+(use-package multi-term
+  :ensure t
+  :config
+  (setq multi-term-program "/usr/local/bin/bash")
+  :bind
+  ("C-c x" . multi-term)
+  ("C-c C-j" . term-line-mode)
+  ("C-c C-k" . term-char-mode)
+  ("C-c C-]" . multi-term-next)
+  ("C-c C-[" . multi-term-prev))
 
 (use-package editorconfig
   :ensure t
