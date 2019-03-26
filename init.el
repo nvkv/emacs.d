@@ -94,22 +94,46 @@
   :config
   (ido-mode 1)
   (setq ido-everywhere t)
+
   (setq ido-enable-flex-matching t))
 
 (use-package the-colour-theme
   :load-path "site-lisp/the-colour-theme/")
 
-
 (use-package multi-term
   :ensure t
+
   :config
   (setq multi-term-program "/usr/local/bin/bash")
+  (setq multi-term-buffer-name "t")
+
+  (define-key
+    term-raw-map
+    (kbd "M-<right>")
+    '(lambda ()
+       (interactive)
+       (term-send-raw-string "\e[1;5C")))
+
+  (define-key
+    term-raw-map
+    (kbd "M-<left>")
+    '(lambda ()
+       (interactive)
+       (term-send-raw-string "\e[1;5D")))
+
+  (define-key
+    term-raw-map
+    (kbd "M-<backspace>")
+    '(lambda ()
+       (interactive)
+       (term-send-raw-string "\e\d")))
+
   :bind
-  ("C-c x" . multi-term)
+  ("C-c t" . multi-term)
   ("C-c C-j" . term-line-mode)
   ("C-c C-k" . term-char-mode)
-  ("C-c C-]" . multi-term-next)
-  ("C-c C-[" . multi-term-prev))
+  ("C-c ]" . multi-term-next)
+  ("C-c [" . multi-term-prev))
 
 (use-package editorconfig
   :ensure t
