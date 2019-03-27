@@ -230,3 +230,8 @@
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package olivetti
+  :ensure t
+  :bind
+  ("C-c o" . olivetti-mode))
