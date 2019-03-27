@@ -167,6 +167,11 @@
                                            :box (:line-width 2 :color ,lazy
                                                              :style pressed-button)
                                            :foreground "black"))))
+
+   '(term-color-red ((t (:foreground "dark red"))))
+   '(term-color-green ((t (:foreground "dark green"))))
+   '(term-color-yellow ((t (:foreground "#727238"))))
+
    '(font-latex-string-face ((t (:foreground "black"))))
    '(font-latex-verbatim-face ((t (:foreground "black"))))
    '(font-latex-sedate-face ((t (:foreground "black"))))
