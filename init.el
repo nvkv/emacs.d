@@ -69,7 +69,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Fira Code Retina-18"))
+  (set-frame-font "Fira Code-19"))
 
 (use-package mule
   :ensure nil
@@ -235,3 +235,18 @@
   :ensure t
   :bind
   ("C-c o" . olivetti-mode))
+
+(use-package deft
+  :ensure t
+  :config
+  (setq deft-directory "~/Dropbox/notes"
+        deft-extensions '("org" "md" "txt")
+        deft-default-extension (car deft-extensions)
+        deft-recursive t
+        deft-use-filename-as-title t
+        deft-use-filter-string-for-filename t
+        deft-file-naming-rules '((noslash . "-")
+                                 (nospace . "-")
+                                 (case-fn . downcase)))
+  :bind
+  ("C-c d" . deft))
