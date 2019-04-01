@@ -239,8 +239,8 @@
 (use-package deft
   :ensure t
   :config
-  (setq deft-directory "~/Dropbox/notes"
-        deft-extensions '("org" "md" "txt")
+  (setq deft-directory "~/notes"
+        deft-extensions '("md" "org" "txt")
         deft-default-extension (car deft-extensions)
         deft-recursive t
         deft-use-filename-as-title t
