@@ -94,8 +94,12 @@
   :config
   (ido-mode 1)
   (setq ido-everywhere t)
-
   (setq ido-enable-flex-matching t))
+
+(use-package ediff
+  :ensure nil
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package the-colour-theme
   :load-path "site-lisp/the-colour-theme/")
@@ -240,13 +244,30 @@
   :ensure t
   :config
   (setq deft-directory "~/notes"
-        deft-extensions '("md" "org" "txt")
+        deft-extensions '("org" "md" "txt")
         deft-default-extension (car deft-extensions)
         deft-recursive t
         deft-use-filename-as-title t
         deft-use-filter-string-for-filename t
+        deft-auto-save-interval 30.0
         deft-file-naming-rules '((noslash . "-")
                                  (nospace . "-")
                                  (case-fn . downcase)))
   :bind
   ("C-c d" . deft))
+
+(use-package reveal-in-osx-finder
+  :ensure t
+  :bind
+  ("C-c <SPC>" . reveal-in-osx-finder))
+
+(use-package org-bullets
+  :ensure t
+  :custom
+  (org-bullets-bullet-list '("•"))
+  (org-ellipsis "↴")
+  :hook
+  (org-mode . org-bullets-mode))
+
+(use-package org-preview-html
+  :ensure t)
