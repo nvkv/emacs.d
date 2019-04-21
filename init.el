@@ -32,6 +32,7 @@
   (set-window-buffer nil (current-buffer))
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
+  (windmove-default-keybindings)
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
@@ -270,4 +271,13 @@
   (org-mode . org-bullets-mode))
 
 (use-package org-preview-html
+  :ensure t)
+
+(use-package eros
+  :ensure t
+  :config
+  (eros-mode 1))
+
+
+(use-package restclient
   :ensure t)
