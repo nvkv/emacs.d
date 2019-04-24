@@ -177,7 +177,9 @@
   :ensure t
   :config
   (setq highlight-indent-guides-method 'character)
-  :hook (yaml-mode . highlight-indent-guides-mode))
+  :hook
+  (yaml-mode . highlight-indent-guides-mode)
+  (python-mode . highlight-indent-guides-mode))
 
 (use-package yaml-mode
   :ensure t)
