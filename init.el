@@ -27,7 +27,7 @@
   (scroll-bar-mode 0)
   (blink-cursor-mode 0)
   (tool-bar-mode 0)
-  (menu-bar-mode 0)
+  (menu-bar-mode 1)
   (setq-default tab-width 2)
   (set-window-buffer nil (current-buffer))
   (setq ring-bell-function 'ignore)
@@ -70,7 +70,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Fira Code-19"))
+  (set-frame-font "Go Mono-22:antialias=none"))
 
 (use-package mule
   :ensure nil
@@ -107,7 +107,6 @@
 
 (use-package multi-term
   :ensure t
-
   :config
   (require 'cl)
   (setq multi-term-program "/usr/local/bin/bash")
@@ -173,6 +172,12 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (setq highlight-indent-guides-method 'character)
+  :hook (yaml-mode . highlight-indent-guides-mode))
 
 (use-package yaml-mode
   :ensure t)
@@ -277,7 +282,6 @@
   :ensure t
   :config
   (eros-mode 1))
-
 
 (use-package restclient
   :ensure t)
