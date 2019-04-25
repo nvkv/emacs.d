@@ -29,6 +29,7 @@
   (tool-bar-mode 0)
   (menu-bar-mode 1)
   (setq-default tab-width 2)
+  (setq sh-basic-offset 2)
   (set-window-buffer nil (current-buffer))
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
