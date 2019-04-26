@@ -71,7 +71,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Go Mono-22:antialias=none"))
+  (set-frame-font "Go Mono-20"))
 
 (use-package mule
   :ensure nil
