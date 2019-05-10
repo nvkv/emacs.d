@@ -288,3 +288,8 @@
 
 (use-package restclient
   :ensure t)
+
+(use-package reverse-im
+  :ensure t
+  :config
+  (reverse-im-activate "russian-no-windows"))
