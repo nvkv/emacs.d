@@ -4,6 +4,7 @@
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "~/go/bin/")
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setenv "DICPATH" (concat (getenv "HOME") "/Library/Spelling"))
 
 ;; Package bootstrap
 (setq package-archives
@@ -50,6 +51,34 @@
   ("C-S-<up>" . shrink-window)
   ("C-S-<left>" . shrink-window-horizontally)
   ("C-S-<right>" . enlarge-window-horizontally))
+
+
+(use-package ispell
+  :defer t
+  :custom
+
+  (ispell-local-dictionary-alist
+    '(("russian"
+       "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
+       "[^АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
+       "[-]"  nil ("-d" "ru") nil utf-8)
+      ("english"
+       "[A-Za-z]" "[^A-Za-z]"
+       "[']"  nil ("-d" "en_GB") nil utf-8)))
+  (ispell-program-name "aspell")
+  (ispell-dictionary "russian")
+  (ispell-really-aspell t)
+  (ispell-really-hunspell nil)
+  (ispell-encoding8-command t)
+  (ispell-silently-savep t))
+
+
+(use-package flyspell
+  :ensure t
+  :custom
+  (flyspell-delay 1)
+  :hook
+  (text-mode . (lambda () (flyspell-mode 1))))
 
 (use-package files
   :ensure nil
