@@ -56,7 +56,6 @@
 (use-package ispell
   :defer t
   :custom
-
   (ispell-local-dictionary-alist
     '(("russian"
        "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
@@ -307,6 +306,12 @@
   :hook
   (org-mode . org-bullets-mode))
 
+(use-package ox-gfm
+  :ensure t
+  :init
+  (eval-after-load "org"
+    '(require 'ox-gfm nil t)))
+
 (use-package org-preview-html
   :ensure t)
 
@@ -322,3 +327,6 @@
   :ensure t
   :config
   (reverse-im-activate "russian-no-windows"))
+
+(use-package fish-mode
+  :ensure t)
