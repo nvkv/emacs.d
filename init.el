@@ -3,6 +3,7 @@
 ;; Set PATH
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "~/go/bin/")
+(add-to-list 'exec-path "~/.cargo/bin/")
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setenv "DICPATH" (concat (getenv "HOME") "/Library/Spelling"))
 
@@ -35,6 +36,7 @@
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
   (windmove-default-keybindings)
+  (set-cursor-color "#000000")
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
@@ -44,6 +46,7 @@
   (create-lockfiles nil)
   (show-paren-mode 1)
   (debug-on-quit nil)
+  (cursor-type 'box)
 
   :bind
   ("M-i" . imenu)
@@ -90,6 +93,8 @@
   (backup-directory-alist
    `((".*" . ,(expand-file-name
                (concat user-emacs-directory "backups")))))
+  (auto-save-file-name-transforms
+   `((".*" ,temporary-file-directory t)))
   (delete-old-versions t)
   (kept-new-versions 6)
   (kept-old-versions 2)
@@ -99,7 +104,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Go Mono-20"))
+  (set-frame-font "Go Mono-17"))
 
 (use-package mule
   :ensure nil
@@ -131,8 +136,8 @@
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
-(use-package the-colour-theme
-  :load-path "site-lisp/the-colour-theme/")
+(use-package highlighter
+  :load-path "site-lisp/highlighter/")
 
 (use-package multi-term
   :ensure t
@@ -177,24 +182,6 @@
 (use-package ag
   :ensure t)
 
-(use-package auto-complete
-  :ensure t
-  :init (auto-complete-mode t)
-  :config
-  (progn
-    (use-package auto-complete-config)
-    (ac-set-trigger-key "TAB")
-    (ac-config-default)
-    (setq ac-delay 1)
-    (setq ac-use-menu-map t)
-    (setq ac-menu-height 50)
-    (setq ac-use-quick-help nil)
-    (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
-    (setq ac-ignore-case nil)
-    (setq ac-dwim t)
-    (setq ac-fuzzy-enable t)
-    (add-to-list 'ac-modes 'terraform-mode)))
-
 (use-package projectile
   :ensure t
   :config
@@ -229,8 +216,9 @@
 (use-package go-mode
   :ensure t
   :init
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (setq-default gofmt-command "~/go/bin/goimports"))
+  (setq-default gofmt-command "~/go/bin/goimports")
+  :hook
+  (before-save-hook . gofmt-before-save))
 
 (use-package markdown-mode
   :ensure t
@@ -268,9 +256,9 @@
   :config
   (which-key-mode))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
+;(use-package rainbow-delimiters
+;  :ensure t
+;  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package olivetti
   :ensure t
@@ -328,5 +316,32 @@
   :config
   (reverse-im-activate "russian-no-windows"))
 
-(use-package fish-mode
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq rust-format-on-save t))
+
+(use-package cargo
+  :ensure t
+  :hook
+  (rust-mode . cargo-minor-mode)
+  (rust-mode . company-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.5)
+  (setq company-show-numbers t)
+  (company-tng-configure-default)
+  (setq company-frontends
+        '(company-tng-frontend
+          company-pseudo-tooltip-frontend
+          company-echo-metadata-frontend)))
+
+(use-package company-tabnine
+  :ensure t
+  :config
+  (add-to-list 'company-backends #'company-tabnine))
+
+(use-package ripgrep
   :ensure t)
