@@ -30,6 +30,7 @@
   (blink-cursor-mode 0)
   (tool-bar-mode 0)
   (menu-bar-mode 1)
+  (global-visual-line-mode 1)
   (setq-default tab-width 2)
   (setq sh-basic-offset 2)
   (set-window-buffer nil (current-buffer))
@@ -255,10 +256,6 @@
   :diminish which-key-mode
   :config
   (which-key-mode))
-
-;(use-package rainbow-delimiters
-;  :ensure t
-;  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package olivetti
   :ensure t
