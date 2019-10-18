@@ -1,11 +1,5 @@
 (require 'package)
-
-;; Set PATH
-(add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'exec-path "~/go/bin/")
-(add-to-list 'exec-path "~/.cargo/bin/")
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setenv "DICPATH" (concat (getenv "HOME") "/Library/Spelling"))
+(setenv "LC_ALL" "en_US.UTF-8")
 
 ;; Package bootstrap
 (setq package-archives
@@ -20,6 +14,11 @@
   (package-install 'use-package))
 
 (server-start)
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package emacs
   :ensure nil
@@ -37,6 +36,7 @@
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
   (windmove-default-keybindings)
+  (setq split-height-threshold 80)
   (set-cursor-color "#000000")
 
   :custom
@@ -107,6 +107,7 @@
   :init
   (set-frame-font "Go Mono-17"))
 
+
 (use-package mule
   :ensure nil
   :config
@@ -122,7 +123,7 @@
   (custom-file null-device "Don't store customizations"))
 
 (use-package autorevert
-  :ensure nil
+  :ensure t
   :diminish auto-revert-mode)
 
 (use-package ido
@@ -139,41 +140,6 @@
 
 (use-package highlighter
   :load-path "site-lisp/highlighter/")
-
-(use-package multi-term
-  :ensure t
-  :config
-  (require 'cl)
-  (setq multi-term-program "/usr/local/bin/bash")
-  (setq multi-term-buffer-name "t")
-
-  (define-key
-    term-raw-map
-    (kbd "M-<right>")
-    '(lambda ()
-       (interactive)
-       (term-send-raw-string "\e[1;5C")))
-
-  (define-key
-    term-raw-map
-    (kbd "M-<left>")
-    '(lambda ()
-       (interactive)
-       (term-send-raw-string "\e[1;5D")))
-
-  (define-key
-    term-raw-map
-    (kbd "M-<backspace>")
-    '(lambda ()
-       (interactive)
-       (term-send-raw-string "\e\d")))
-
-  :bind
-  ("C-c t" . multi-term)
-  ("C-c C-j" . term-line-mode)
-  ("C-c C-k" . term-char-mode)
-  ("C-c ]" . multi-term-next)
-  ("C-c [" . multi-term-prev))
 
 (use-package editorconfig
   :ensure t
@@ -219,7 +185,7 @@
   :init
   (setq-default gofmt-command "~/go/bin/goimports")
   :hook
-  (before-save-hook . gofmt-before-save))
+  (before-save . gofmt-before-save))
 
 (use-package markdown-mode
   :ensure t
@@ -261,22 +227,6 @@
   :ensure t
   :bind
   ("C-c o" . olivetti-mode))
-
-(use-package deft
-  :ensure t
-  :config
-  (setq deft-directory "~/notes"
-        deft-extensions '("org" "md" "txt")
-        deft-default-extension (car deft-extensions)
-        deft-recursive t
-        deft-use-filename-as-title t
-        deft-use-filter-string-for-filename t
-        deft-auto-save-interval 30.0
-        deft-file-naming-rules '((noslash . "-")
-                                 (nospace . "-")
-                                 (case-fn . downcase)))
-  :bind
-  ("C-c d" . deft))
 
 (use-package reveal-in-osx-finder
   :ensure t
@@ -330,6 +280,7 @@
   (setq company-idle-delay 0.5)
   (setq company-show-numbers t)
   (company-tng-configure-default)
+  (global-company-mode 1)
   (setq company-frontends
         '(company-tng-frontend
           company-pseudo-tooltip-frontend

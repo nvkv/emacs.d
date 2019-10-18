@@ -24,6 +24,8 @@
       (purple-bg "#fee9e9")
       (green-bg "#f9fcf2")
       (magenta-bg "#fdf7ff")
+      (orange-bg "#ffdab5")
+      (burnt-orange-bg "#cfa07e")
       (mud "#99994C"))
   (custom-theme-set-faces
    'highlighter
@@ -32,7 +34,7 @@
    `(escape-glyph ((t (:foreground ,fg))))
    `(minibuffer-prompt ((t (:foreground ,fg :weight bold))))
    `(highlight ((t (:foreground "grey30"))))
-   `(region ((t (:background ,yellow-bg :foreground ,fg))))
+   `(region ((t (:background ,burnt-orange-bg :foreground ,fg))))
    `(secondary-selection ((t (:background ,red))))
    '(trailing-whitespace ((t (:background "grey"))))
    `(font-lock-builtin-face ((t (:background ,magenta-bg))))
