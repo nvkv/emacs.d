@@ -1,6 +1,9 @@
 (require 'package)
 (setenv "LC_ALL" "en_US.UTF-8")
 
+(defun on-windows? ()
+  (eq system-type 'windows-nt))
+
 ;; Package bootstrap
 (setq package-archives
       `(,@package-archives
@@ -17,6 +20,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :if (not (on-windows?))
   :config
   (exec-path-from-shell-initialize))
 
@@ -28,7 +32,8 @@
   (scroll-bar-mode 0)
   (blink-cursor-mode 0)
   (tool-bar-mode 0)
-  (menu-bar-mode 1)
+  (if (on-windows?)
+      (menu-bar-mode 0))
   (global-visual-line-mode 1)
   (setq-default tab-width 2)
   (setq sh-basic-offset 2)
@@ -36,6 +41,7 @@
   (setq ring-bell-function 'ignore)
   (setq-default left-margin-width 0 right-margin-width 0)
   (windmove-default-keybindings)
+  (setq w32-get-true-file-attributes nil)
   (setq split-height-threshold 80)
   (set-cursor-color "#000000")
 
@@ -59,6 +65,7 @@
 
 (use-package ispell
   :defer t
+  :if (not (eq system-type 'windows-nt))
   :custom
   (ispell-local-dictionary-alist
     '(("russian"
@@ -105,8 +112,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Go Mono-17"))
-
+  (set-frame-font "Go Mono-12"))
 
 (use-package mule
   :ensure nil
@@ -292,4 +298,7 @@
   (add-to-list 'company-backends #'company-tabnine))
 
 (use-package ripgrep
+  :ensure t)
+
+(use-package powershell
   :ensure t)
