@@ -7,11 +7,11 @@
 (if (on-windows?)
     (add-to-list 'default-frame-alist '(font . "Go Mono-12")))
 
-
 ;; Package bootstrap
 (setq package-archives
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
+(setq-default package-check-signature 'allow-unsigned)
 
 (package-initialize)
 (setq package-enable-at-startup nil)
@@ -21,6 +21,10 @@
   (package-install 'use-package))
 
 (server-start)
+
+(use-package gnu-elpa-keyring-update
+  :ensure t
+  :if (on-windows?))
 
 (use-package exec-path-from-shell
   :ensure t
