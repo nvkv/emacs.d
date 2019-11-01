@@ -4,6 +4,10 @@
 (defun on-windows? ()
   (eq system-type 'windows-nt))
 
+(if (on-windows?)
+    (add-to-list 'default-frame-alist '(font . "Go Mono-12")))
+
+
 ;; Package bootstrap
 (setq package-archives
       `(,@package-archives
@@ -99,12 +103,7 @@
   :custom
   (require-final-newline t)
   ;; backup settings
-  (backup-by-copying t)
-  (backup-directory-alist
-   `((".*" . ,(expand-file-name
-               (concat user-emacs-directory "backups")))))
-  (auto-save-file-name-transforms
-   `((".*" ,temporary-file-directory t)))
+  (make-backup-files nil)
   (delete-old-versions t)
   (kept-new-versions 6)
   (kept-old-versions 2)
@@ -287,23 +286,6 @@
   :hook
   (rust-mode . cargo-minor-mode)
   (rust-mode . company-mode))
-
-;; (use-package company
-;;   :ensure t
-;;   :config
-;;   (setq company-idle-delay 0.5)
-;;   (setq company-show-numbers t)
-;;   (company-tng-configure-default)
-;;   (global-company-mode 1)
-;;   (setq company-frontends
-;;         '(company-tng-frontend
-;;           company-pseudo-tooltip-frontend
-;;           company-echo-metadata-frontend)))
-
-;; (use-package company-tabnine
-;;   :ensure t
-;;   :config
-;;   (add-to-list 'company-backends #'company-tabnine))
 
 (use-package ripgrep
   :ensure t)
