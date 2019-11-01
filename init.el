@@ -44,6 +44,7 @@
   (setq w32-get-true-file-attributes nil)
   (setq split-height-threshold 80)
   (set-cursor-color "#000000")
+  ;(setq recentf-auto-cleanup 'never)
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
@@ -65,7 +66,7 @@
 
 (use-package ispell
   :defer t
-  :if (not (eq system-type 'windows-nt))
+  :if (not (on-windows?))
   :custom
   (ispell-local-dictionary-alist
     '(("russian"
@@ -85,6 +86,7 @@
 
 (use-package flyspell
   :ensure t
+  :if (not (on-windows?))
   :custom
   (flyspell-delay 1)
   :hook
@@ -180,6 +182,10 @@
 (use-package magit
   :ensure t
   :config
+  (if (on-windows?)
+      (progn
+       (setq magit-git-executable "C:/Program Files/Git/cmd/git.exe")
+       (setq magit-refresh-verbose nil)))
   (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package terraform-mode
@@ -189,7 +195,9 @@
 (use-package go-mode
   :ensure t
   :init
-  (setq-default gofmt-command "~/go/bin/goimports")
+  (if (on-windows?)
+      (setq-default gofmt-command "C:/Users/nvkv/go/bin/goimports.exe")
+      (setq-default gofmt-command "~/go/bin/goimports"))
   :hook
   (before-save . gofmt-before-save))
 
@@ -280,22 +288,22 @@
   (rust-mode . cargo-minor-mode)
   (rust-mode . company-mode))
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.5)
-  (setq company-show-numbers t)
-  (company-tng-configure-default)
-  (global-company-mode 1)
-  (setq company-frontends
-        '(company-tng-frontend
-          company-pseudo-tooltip-frontend
-          company-echo-metadata-frontend)))
+;; (use-package company
+;;   :ensure t
+;;   :config
+;;   (setq company-idle-delay 0.5)
+;;   (setq company-show-numbers t)
+;;   (company-tng-configure-default)
+;;   (global-company-mode 1)
+;;   (setq company-frontends
+;;         '(company-tng-frontend
+;;           company-pseudo-tooltip-frontend
+;;           company-echo-metadata-frontend)))
 
-(use-package company-tabnine
-  :ensure t
-  :config
-  (add-to-list 'company-backends #'company-tabnine))
+;; (use-package company-tabnine
+;;   :ensure t
+;;   :config
+;;   (add-to-list 'company-backends #'company-tabnine))
 
 (use-package ripgrep
   :ensure t)
