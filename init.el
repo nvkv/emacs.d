@@ -4,14 +4,10 @@
 (defun on-windows? ()
   (eq system-type 'windows-nt))
 
-(if (on-windows?)
-    (add-to-list 'default-frame-alist '(font . "Go Mono-12")))
-
 ;; Package bootstrap
 (setq package-archives
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
-(setq-default package-check-signature 'allow-unsigned)
 
 (package-initialize)
 (setq package-enable-at-startup nil)
@@ -40,8 +36,7 @@
   (scroll-bar-mode 0)
   (blink-cursor-mode 0)
   (tool-bar-mode 0)
-  (if (on-windows?)
-      (menu-bar-mode 0))
+  (menu-bar-mode 0)
   (global-visual-line-mode 1)
   (setq-default tab-width 2)
   (setq sh-basic-offset 2)
@@ -52,7 +47,6 @@
   (setq w32-get-true-file-attributes nil)
   (setq split-height-threshold 80)
   (set-cursor-color "#000000")
-  ;(setq recentf-auto-cleanup 'never)
 
   :custom
   (inhibit-startup-screen t "Don't show splash screen")
@@ -70,7 +64,6 @@
   ("C-S-<up>" . shrink-window)
   ("C-S-<left>" . shrink-window-horizontally)
   ("C-S-<right>" . enlarge-window-horizontally))
-
 
 (use-package ispell
   :defer t
@@ -90,7 +83,6 @@
   (ispell-really-hunspell nil)
   (ispell-encoding8-command t)
   (ispell-silently-savep t))
-
 
 (use-package flyspell
   :ensure t
@@ -117,10 +109,11 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Go Mono-12"))
+  (set-frame-font "Go Mono-11"))
 
 (use-package mule
   :ensure nil
+  :if (not (on-windows?))
   :config
   (prefer-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
@@ -156,9 +149,6 @@
   :ensure t
   :config
   (editorconfig-mode 1))
-
-(use-package ag
-  :ensure t)
 
 (use-package projectile
   :ensure t
@@ -231,9 +221,6 @@
 (use-package cider
   :ensure t)
 
-(use-package groovy-mode
-  :ensure t)
-
 (use-package which-key
   :ensure t
   :diminish which-key-mode
@@ -247,25 +234,9 @@
 
 (use-package reveal-in-osx-finder
   :ensure t
+  :if (not (on-windows?))
   :bind
   ("C-c <SPC>" . reveal-in-osx-finder))
-
-(use-package org-bullets
-  :ensure t
-  :custom
-  (org-bullets-bullet-list '("•"))
-  (org-ellipsis "↴")
-  :hook
-  (org-mode . org-bullets-mode))
-
-(use-package ox-gfm
-  :ensure t
-  :init
-  (eval-after-load "org"
-    '(require 'ox-gfm nil t)))
-
-(use-package org-preview-html
-  :ensure t)
 
 (use-package eros
   :ensure t
@@ -278,7 +249,7 @@
 (use-package reverse-im
   :ensure t
   :config
-  (reverse-im-activate "russian-no-windows"))
+  (reverse-im-activate "russian-computer"))
 
 (use-package rust-mode
   :ensure t
@@ -288,11 +259,15 @@
 (use-package cargo
   :ensure t
   :hook
-  (rust-mode . cargo-minor-mode)
-  (rust-mode . company-mode))
+  (rust-mode . cargo-minor-mode))
 
 (use-package ripgrep
   :ensure t)
 
 (use-package powershell
   :ensure t)
+
+(use-package mood-line
+  :ensure t
+  :hook
+  (after-init . mood-line-mode))
