@@ -9,6 +9,10 @@
       `(,@package-archives
         ("melpa" . "https://melpa.org/packages/")))
 
+(if (on-windows?)
+    (setenv "PATH" (concat "C:\\msys64\\usr\\bin;" (getenv "PATH")))
+    (setq exec-path (append exec-path '("C:/msys64/usr/bin"))))
+
 (package-initialize)
 (setq package-enable-at-startup nil)
 
@@ -109,7 +113,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Go Mono-11"))
+  (set-frame-font "Fira Code Retina-12"))
 
 (use-package mule
   :ensure nil
@@ -152,8 +156,11 @@
 
 (use-package projectile
   :ensure t
+  :custom
+  (projectile-indexing-method 'alien)
   :config
-  (projectile-mode +1)
+  (setq-default projectile-enable-caching t)
+  (projectile-mode 1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 

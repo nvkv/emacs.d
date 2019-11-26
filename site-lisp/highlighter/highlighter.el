@@ -9,12 +9,12 @@
 (deftheme highlighter
   "A light colour scheme for people who feels adventurous. Inspired by beautiful Alabaster colour scheme by Nikita Prokopov.")
 
-(let ((bg (if (window-system) "#FFFFFF" "clear"))
-      (lazy "#D1D1C0")
+(let ((bg (if (window-system) "#ffffff" "clear"))
+      (lazy "#d1d1c0")
       (fg "#000000")
       (yellow "#EAEA9E")
       (red "#AA0000")
-      (blue "#EAFFFF")
+      (blue "#eaffff")
       (purple "#fee9e9")
       (green "#508050")
       (red-bg "#ffebeb")
@@ -26,7 +26,7 @@
       (magenta-bg "#fdf7ff")
       (orange-bg "#ffdab5")
       (burnt-orange-bg "#cfa07e")
-      (mud "#99994C"))
+      (mud "#99994c"))
   (custom-theme-set-faces
    'highlighter
    `(default ((t (:background ,bg :foreground ,fg ))))
