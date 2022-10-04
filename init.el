@@ -113,7 +113,7 @@
   :ensure nil
   :if window-system
   :init
-  (set-frame-font "Fira Code Retina-11"))
+  (set-frame-font "Iosevka Curly-14"))
 
 (use-package mule
   :ensure nil
